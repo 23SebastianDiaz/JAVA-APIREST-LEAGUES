@@ -17,6 +17,7 @@ public class Country {
     private String contient;
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
+    @JsonManagedReference
     private List<Player> players = new ArrayList<>();
 
     @OneToMany(mappedBy = "country", cascade = CascadeType.ALL, orphanRemoval = true)
@@ -62,7 +63,5 @@ public class Country {
     public void setLeagues(List<League> leagues) {
         this.leagues = leagues;
     }
-
-
 
 }

@@ -1,6 +1,8 @@
 package com.sebasdiaz.apileague.apileague.entities;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -21,6 +23,7 @@ public class Player {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "country_id")
+    @JsonBackReference
     private Country country;
 
     public Country getCountry() {

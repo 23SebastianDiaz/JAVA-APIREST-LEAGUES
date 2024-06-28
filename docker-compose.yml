@@ -1,14 +1,33 @@
-version: '3.8'
+version: '3.9'
 
 services:
+
   postgres:
-    image: postgres:latest
+    image: postgres
+    container_name: postgres
     restart: always
-    environment:
-      POSTGRES_USER: ${SPRING_DATASOURCE_USERNAME}
-      POSTGRES_PASSWORD: ${SPRING_DATASOURCE_PASSWORD}
-      POSTGRES_DB: ${SPRING_DATASOURCE_DB}
     ports:
       - "5432:5432"
+    environment:
+      POSTGRES_USER: sebasdiaz
+      POSTGRES_DB: dbleagues
+      POSTGRES_PASSWORD: 123456
     volumes:
-      - ./postgres:/var/lib/postgesql/data
+      - postgres_data:/var/lib/postgresql/data
+
+  pgadmin:
+    image: dpage/pgadmin4
+    container_name: pgadmin4_container
+    restart: always
+    ports:
+      - "8888:80"
+    environment:
+      PGADMIN_DEFAULT_EMAIL: user-name@domain-name.com
+      PGADMIN_DEFAULT_PASSWORD: strong-password
+    volumes:
+      - pgadmin-data:/var/lib/pgadmin
+
+ 
+volumes:
+  postgres_data:
+  pgadmin-data:
